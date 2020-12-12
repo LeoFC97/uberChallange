@@ -1,11 +1,11 @@
 module.exports = {
   service: {
-    port: 3000,
-    name: 'uberChallange',
+    port: process.env.PORT || 3000,
+    name: process.env.SERVICE_NAME || 'uberChallange',
   },
   external: {
     sparkPost: {
-      apiKey: 'mocked',
+      apiKey: process.env.SPARK_POST_API_KEY || 'mocked',
     },
   },
 };

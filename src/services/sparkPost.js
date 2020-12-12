@@ -5,11 +5,11 @@ const sparkPostHelper = require('../helpers/sparkPost');
 const sparky = new SparkPost(external.sparkPost.apiKey);
 
 module.exports = {
-  async sendMailToSparkApi(params) {
+  async sendMailToSparkApi(from, subject, emailBody, recipients) {
     return sparky.transmissions.send({
       options: { sandbox: true },
-      content: sparkPostHelper.mountcontent(params),
-      recipients: [{ address: 'developers+nodejs@sparkpost.com' }],
+      content: sparkPostHelper.mountcontent(from, subject, emailBody),
+      recipients: sparkPostHelper.mountRecipients(recipients),
     })
       .then((data) => {
         console.log(data);

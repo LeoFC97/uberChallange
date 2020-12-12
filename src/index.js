@@ -4,9 +4,9 @@ const routes = require('./routes');
 const { service } = require('./config/enviroment');
 
 const app = express();
-app.use(routes);
+app.use(express.json());
 
-app.set('port', service.port);
+app.use(routes);
 
 const server = app.listen(service.port, () => {
   console.log(`server runing @ port: ${service.port}`);
