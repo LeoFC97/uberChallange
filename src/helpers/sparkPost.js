@@ -1,9 +1,15 @@
 module.exports = {
-  mountcontent(params) {
+  mountcontent(from, subject, emailBody) {
     return {
-      from: params.from,
-      subject: 'Oh hey',
-      html: '<html><body><p>Testing SparkPost - the most awesomest email service!</p></body></html>',
+      from,
+      subject,
+      html: emailBody,
     };
+  },
+  mountRecipients(recipients) {
+    const arrayWithRecipients = recipients.map((recipient) => ({
+      address: recipient,
+    }));
+    return arrayWithRecipients;
   },
 };
