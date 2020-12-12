@@ -35,7 +35,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.2.0"
+    "helmet": "^4.2.0",
+    "sparkpost": "^2.1.4"
   },
   "husky": {
     "hooks": {
