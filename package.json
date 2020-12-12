@@ -1,0 +1,45 @@
+{
+  "name": "uberChallange",
+  "version": "1.0.0",
+  "description": "uber 2016 public challange",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeoFC97/uberChallange.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeoFC97/uberChallange/issues"
+  },
+  "homepage": "https://github.com/LeoFC97/uberChallange#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "nodemon": "^2.0.6",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.13.2",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "husky": "^4.2.5",
+    "jest": "^25.4.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:fix"
+    }
+  }
+}
