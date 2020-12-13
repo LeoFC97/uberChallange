@@ -12,17 +12,17 @@ module.exports = {
       recipients: sparkPostHelper.mountRecipients(recipients),
     })
       .then((data) => {
-        const sucessOBject={
-          code:200,
-          msg:data
-        }
-        return sucessOBject
+        const sucessOBject = {
+          code: 200,
+          msg: data,
+        };
+        return sucessOBject;
       })
       .catch((err) => {
         const failRequest = {
-          code:400,
-          msg:err
-        }
+          code: 400,
+          msg: err,
+        };
         return failRequest;
       });
   },
