@@ -1,6 +1,6 @@
 const sparkPost = require('../services/sparkPost');
 const { missingParamsError } = require('../errors/http');
-const { missingApiKey, missingSendingDomainSpecified } = require('../errors/sparkPost');
+const { missingApiKey, missingSendingDomainSpecified, wrongSendingDomainSpecified } = require('../errors/sparkPost');
 
 module.exports = {
   async sendMail(req, res) {
@@ -19,6 +19,10 @@ module.exports = {
         return res.status(code).send({ error: msg });
       }
       if (responseOfSparkPostService.statusCode === 400) {
+        if (responseOfSparkPostService.msg === 'invalid domain, use @sparkpostbox.com') {
+          const { code, msg } = wrongSendingDomainSpecified();
+          return res.status(code).send({ error: msg });
+        }
         const { code, msg } = missingSendingDomainSpecified();
         return res.status(code).send({ error: msg });
       }
