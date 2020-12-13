@@ -4,7 +4,7 @@
   "description": "uber 2016 public challange",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --passWithNoTests --watchAll",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev": "nodemon src/index.js",
