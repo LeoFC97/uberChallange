@@ -12,12 +12,18 @@ module.exports = {
       recipients: sparkPostHelper.mountRecipients(recipients),
     })
       .then((data) => {
-        console.log(data);
-        console.log('Woohoo! You just sent your first mailing!');
+        const sucessOBject = {
+          code: 200,
+          msg: data,
+        };
+        return sucessOBject;
       })
       .catch((err) => {
-        console.log('Whoops! Something went wrong');
-        return err;
+        const failRequest = {
+          code: 400,
+          msg: err,
+        };
+        return failRequest;
       });
   },
 };
