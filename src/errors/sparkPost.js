@@ -6,11 +6,11 @@ module.exports = {
     };
     return errorToReturn;
   },
-  missingSendingDomainSpecified(){
+  missingSendingDomainSpecified() {
     const erroToReturn = {
-      code:400,
-      msg:"No sending domain specified"
-    }
-    return erroToReturn
-  }
+      code: 400,
+      msg: 'No sending domain specified',
+    };
+    return erroToReturn;
+  },
 };
