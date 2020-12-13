@@ -10,6 +10,7 @@ module.exports = {
     const arrayWithRecipients = recipients.map((recipient) => ({
       address: recipient,
     }));
+    console.log(arrayWithRecipients)
     return arrayWithRecipients;
   },
 };
