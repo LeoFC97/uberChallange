@@ -1,5 +1,6 @@
 const sparkPost = require('../services/sparkPost');
-const errorHandler = require('./errorHandler');
+const { missingParamsError } = require('../errors/http');
+const { missingApiKey, missingSendingDomainSpecified } = require('../errors/sparkPost');
 
 module.exports = {
   async sendMail(req, res) {
@@ -7,13 +8,22 @@ module.exports = {
       from, subject, emailBody, recipients,
     } = req.body;
     if (!from || !subject || !emailBody || !recipients) { // valid better
-      const { code, msg } = errorHandler.missingParamsError();
+      const { code, msg } = missingParamsError();
       return res.status(code).send({ error: msg });
     }
-    const emailSended = await sparkPost.sendMailToSparkApi(from, subject, emailBody, recipients);
-    if (emailSended.errors[0]) {
-      return res.status(emailSended.statusCode).send(emailSended.errors[0]);
+    const responseOfSparkPostService = await sparkPost
+      .sendMailToSparkApi(from, subject, emailBody, recipients);
+    if (responseOfSparkPostService.code !== 200) {
+      if (responseOfSparkPostService.statusCode === 403) {
+        const { code, msg } = missingApiKey();
+        return res.status(code).send({ error: msg });
+      }
+      if (responseOfSparkPostService.statusCode === 400) {
+        const { code, msg } = missingSendingDomainSpecified();
+        return res.status(code).send({ error: msg });
+      }
     }
-    return res.status(200).send({ emailSended });
+    return res.status(responseOfSparkPostService.code)
+      .send({ msg: responseOfSparkPostService.msg });
   },
 };
