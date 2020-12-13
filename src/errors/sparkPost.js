@@ -13,4 +13,11 @@ module.exports = {
     };
     return erroToReturn;
   },
+  wrongSendingDomainSpecified() {
+    const erroToReturn = {
+      code: 400,
+      msg: 'invalid domain, use @sparkpostbox.com',
+    };
+    return erroToReturn;
+  },
 };
